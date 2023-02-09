@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NoteFragment"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/note_name"
+        android:inputType="text"
+        android:gravity="left"
+        android:hint="@string/node_title_hint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_note_element"
+        android:padding="20dp"
+        android:layout_margin="5dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
+
+        <CheckBox
+            android:id="@+id/note_in_file"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/note_file"
+            android:layout_marginRight="20dp"/>
+
+        <TextView
+            android:id="@+id/note_date_chars"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/note_text_gray"
+            tools:text="02.02.2023 | 10 characters"/>
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/note_info"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="top|left"
+        android:hint="@string/node_write_your_info_hint"
+        android:scrollbars="vertical"
+        android:background="@drawable/background_note_element"
+        android:padding="20dp"
+        android:layout_margin="5dp"/>
+
+</LinearLayout>

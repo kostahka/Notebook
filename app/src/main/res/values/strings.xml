@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Notebook</string>
+    <string name="node_title_hint">Title</string>
+    <string name="node_write_your_info_hint">Write there...</string>
+    <string name="new_note">New note</string>
+    <string name="delete_note">Delete note</string>
+    <string name="note_file">Store in file</string>
+</resources>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="20dp"
+    android:gravity="center|top"
+    android:background="@drawable/background_note_element"
+    android:layout_margin="5dp">
+
+    <TextView
+        android:id="@+id/note_date_chars"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/note_text_gray"
+        tools:text="02.02.2023 | 10 characters"/>
+
+    <TextView
+        android:id="@+id/note_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        tools:text="Title"/>
+
+    <TextView
+        android:id="@+id/note_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/note_text_gray"
+        tools:text="Info"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom|center_horizontal"
+        android:layout_marginTop="15dp"
+        >
+        <ImageButton
+            android:id="@+id/btn_delete"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_menu_delete"
+            android:contentDescription="@string/delete_note"
+            android:background="@drawable/background_note_delete"
+            android:padding="5dp"
+            />
+    </LinearLayout>
+
+
+
+
+</LinearLayout>
