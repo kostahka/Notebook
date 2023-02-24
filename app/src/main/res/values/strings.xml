@@ -5,4 +5,5 @@
     <string name="new_note">New note</string>
     <string name="delete_note">Delete note</string>
     <string name="note_file">Store in file</string>
+    <string name="filter">Filter</string>
 </resources>

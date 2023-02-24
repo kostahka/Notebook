@@ -3,10 +3,13 @@ package by.bsuir.poit.kosten
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.text.format.DateFormat
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.view.View.OnClickListener
+import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.lifecycle.Observer
@@ -22,7 +25,10 @@ private const val DATE_FORMAT = "EEE, MMM, dd, hh:mm:ss"
 class NoteListFragment : Fragment() {
 
     private lateinit var noteRecyclerView:RecyclerView
+    private lateinit var editFilter:EditText
     private var adapter: NoteAdapter? = NoteAdapter(emptyList())
+
+
 
     interface Callbacks{
         fun onNoteSelected(noteId:UUID)
@@ -32,6 +38,27 @@ class NoteListFragment : Fragment() {
 
     private val noteListViewModel: NoteListViewModel by lazy {
         ViewModelProvider(this).get(NoteListViewModel::class.java)
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        val filterWatcher = object: TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                adapter?.filter(s.toString())
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+        }
+
+        editFilter.addTextChangedListener(filterWatcher)
     }
 
     override fun onAttach(context: Context) {
@@ -76,6 +103,7 @@ class NoteListFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_note_list, container, false)
 
+        editFilter = view.findViewById(R.id.filter)
         noteRecyclerView = view.findViewById(R.id.note_recycler_view)
         noteRecyclerView.layoutManager = GridLayoutManager(context, COLUMNS)
 
@@ -143,19 +171,30 @@ class NoteListFragment : Fragment() {
     }
 
     private inner class NoteAdapter(var notes: List<Note>):RecyclerView.Adapter<NoteHolder>(){
+        var filteredNotes = notes;
+
+        fun filter(filter: String){
+            filteredNotes = if(filter == "")
+                notes;
+            else
+                notes.filter { it.title.contains(filter) };
+
+            notifyDataSetChanged();
+        }
+
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteHolder {
             val view = layoutInflater.inflate(R.layout.list_item_note, parent, false)
             return NoteHolder(view)
         }
 
         override fun onBindViewHolder(holder: NoteHolder, position: Int) {
-            val note = notes[position]
+            val note = filteredNotes[position]
 
             holder.bind(note)
         }
 
         override fun getItemCount(): Int {
-            return notes.size
+            return filteredNotes.size
         }
 
     }
